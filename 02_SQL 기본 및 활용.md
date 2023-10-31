@@ -80,6 +80,90 @@
 
 - A-Z, a-z, 0-9, _, $, # 문자만 허용된다.
 
+### 테이블의 불필요한 칼럼 삭제
+
+- ALTER TABLE
+
+    - 테이블 명
+
+- DROP COLUMN
+
+    - 삭제할 칼럼명
+
+### 테이블 이름 변경 (ANSI 표준 기준, 오라클과 동일함)
+
+RENAME OLD_OBJECT_NAME TO NEW_OBJECT_NAME
+
+RENAME STADIUM TO STADIUM_JSC;
+
+### 참조동작
+
+- Delete(/Modify) Action (부서)
+
+    1. Cascade : Master 삭제 시 Child 같이 삭제
+
+    2. Set Null : Master 삭제 시 Child 해당 필드 Null
+
+    3. Set Default : Master 삭제 시 Child 해당 필드 Default 값으로 설정
+
+    4. Restrict : Child 테이블에 PK 값이 없는 경우만 Master 삭제 허용
+
+    5. No Action : 참조무결성을 위반하는 삭제/수정 액션을 취하지 않음
+
+- Insert Action (사원)
+
+    1. Automatic : Master 테이블에 PK가 없는 경우 Master PK를 생성 후 Child 입력
+
+    2. Set Null : Master 테이블에 PK가 없는 경우 Child 외부키를 Null 값으로 분리
+
+    3. Set Default : Master 테이블에 PK가 없는 경우 Child 외부키를 지정된 기본값으로 입력
+
+    4. Dependent : Master 테이블에 PK가 존재할 때만 Child 입력 허용
+
+    5. No Action : 참조무결성을 위반하는 입력 액션을 취하지 않음
+
+### 테이블에 데이터를 입력하는 두가지 유형
+
+- INSERT INTO 테이블명 (COLUMN_LIST) VALUES (COLUMN_LIST에 넣을 VALUE_LIST);
+
+- INSERT INTO 테이블명 VALUES (전체 COLUMN에 넣을 VALUE_LIST)
+
+### 테이블에 입력된 데이터 조회
+
+SELECT
+    [ALL/DISTINCT]
+    보고 싶은 칼럼명,
+    보고 싶은 칼럼명, ...
+FROM 해당 칼럼들이 있는 테이블 명;
+
+- ALL : Default 옵션이므로 별도로 표시하지 않아도 된다.
+        중복된 데이터가 있어도 모두 출력한다.
+
+- DISTINCT : 중복된 데이터가 있는 경우 1건으로 처리해서 출력한다.
+
+### DROP, TRUNCATE, DELETE
+
+|DROP|TRUNCATE|DELETE|
+|:---:|:---:|:---:|
+|DDL|DDL<br>(일부 DML 성격 가짐)|DML|
+|Rollback 불가능|Rollback 불가능|Commit 이전 Rollback 가능|
+|Auto Commit|Auto Commit|사용자 Commit|
+|테이블이 사용했던 Storage를 모드 Realease|테이블이 사용했던 Storage중 최초 테이블 생성시 할당된 Storage만 남기고 Release|데이터를 모두 Delete해도 사용했던 Storage는 Release되지 않음|
+|테이블의 정의 자체를 완전히 삭제함|테이블을 최초 생성된 초기상태로 만듬|데이터만 삭제|
+
+### 데이터베이스 트랜잭션의 4가지 특성
+|특성|설명|
+|:---:|---|
+|원자성<br>(Atomicity)|트랜잭션에서 정의된 연산들은 모두 성공적으로 실행되던지 아니면 전혀 실행되지 않은 상태로 남아 있어야 한다.<br>(All or Nothing)|
+|일관성<br>(consistency)|트랜잭션이 실행 되기 전의 데이터베이스 내용이 잘못 되어 있지 않다면 트랜잭션이 실행된 이후에도 데이터베이스의 내용에 잘못이 있으면 않된다.|
+|고립성<br>(isolation)|트랜잭션이 실행되는 도중에 다른 트랜잭션의 영향을 받아 잘못된 결과를 만들어서는 안된다.|
+|지속성<br>(durability)|트랜잭션이 성공적으로 수행되면 그 트랜잭션이 갱신한 데이터베이스의 내용은 영구적으로 저장된다.|
+
+### 롤백(Rollback)
+
+데이터 변경 사항이 취소되어 데이터의 이전 상태로 복구되며, 관련된 행에 대한 잠금(LOCKING)이 풀리고
+다른 사용자들이 데이터 변경을 할 수 있게 된다.
+
 ## 2. SQL 활용
 
 ## 3. SQL 최적화 기본 원리
