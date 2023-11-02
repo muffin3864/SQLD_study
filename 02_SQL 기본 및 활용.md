@@ -292,6 +292,24 @@ WHERE절은 FROM 절 다음에 위치한다.
 
 ※ 주: Oracle함수/SQL Server함수 표시, '/'없는 것은 공통 함수
 
+### Dual 테이블의 특성
+
+- 사용자 SYS가 소유하며 모든 사용자가 액세스 가능한 테이블이다.
+
+- SELECT ~ FROM ~ 의 형식을 갖추기 위한 일종의 DUMMY 테이블이다.
+
+- DUMMY라는 문자열 유형의 칼럼에 X라는 값이 들어 있는 행을 1건 포함하고 있다.
+
+### 단일행 함수의 종류
+
+|종류|내용|함수의 예|
+|:---:|---|---|
+|문자형 함수|문자를 입력하면 문자나 숫자 값을 반환한다.|LOWER, UPPER, SUBSRT/SUBSRTING, LENGTH/ LEN, LTRIM, RTRIM, TRIM, ASCII,|
+|숫자형 함수|숫자를 입력하면 숫자 값을 반환한다.|ABS, MOD, ROUND, TRUNC, SIGN, CHR/CHAR, CEIL/CEILING, FLOOR, EXP, LOG, LN, POWER, SIN, COS, TAN|
+|날짜형 함수|DATE 타입의 값을 연산한다.|SYSDATE/GETDATE, EXTRACT/DATEPART, TO_NUMBER(TO_CHAR(d, 'YYYY'/'MM'/'DD'))/YEAR/MONTH/DAY|
+|변환형 함수|문자, 숫자, 날짜형 값의 데이터 타입을 변환한다.|TO_NUMBER, TO_CHAR, TO_DATE/ CAST, CONVERT|
+|NULL 관련 함수|NULL을 처리하기 위한 함수|NVL/ISNULL, NULLIF, COALESCE|
+
 
 
 ## 2. SQL 활용
