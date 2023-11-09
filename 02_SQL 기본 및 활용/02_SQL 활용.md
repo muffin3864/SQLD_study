@@ -196,3 +196,15 @@ FROM 절에서 사용되는 서브쿼리를 인라인 뷰(Inline View)라고 한
 
     계층구조 없이 지역에 대한 합계와 월별 합계를 각각 생성하게 된다.
 
+### 윈도우 함수(Window Function, Analytic Function)
+
+- Partition과 Group By 구문은 의미적으로 유사
+
+- Partition 구문이 없으면 전체 집합을 하나의 Partition으로 정의한것과 동일하다.
+
+- 윈도우 함수 적용 범위는 Partition을 넘을 수 없다.
+
+### RANK 함수
+
+RANK 함수는 ORDER BY를 포함한 QUERY 문에서 특정 항목(칼럼)에 대한 순위를 구하는 함수이며 동일한 값에 대해서는 동일한 순위를 부여하게 된다.
+
